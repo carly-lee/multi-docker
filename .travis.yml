@@ -21,3 +21,15 @@ after_success:
   - docker push carlylee/multi-nginx
   - docker push carlylee/multi-server
   - docker push carlylee/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-ap-northeast-2-674089888659"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
